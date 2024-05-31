@@ -97,7 +97,7 @@ onBeforeUnmount(() => {
     <div class="flex items-center justify-between shadow-md pr-5">
       <div>
         <button
-          class="bg-orange-700 py-8 px-2 flex justify-center hover:bg-slate-900 hover:text-white"
+          class="bg-orange-700 py-6 px-2 flex justify-center hover:bg-slate-900 hover:text-white"
           :class="!modelValue ? 'w-[65px]' : ''"
           @click="toogleSide"
         >
