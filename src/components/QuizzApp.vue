@@ -68,60 +68,59 @@ const quizzes = reactive([
   {
     id: 2,
     question: "2+12 = ?",
-    answers: ["4", "2", "3", "5"],
-    correctAnswer: "4",
+    answers: ["14", "2", "3", "5"],
+    correctAnswer: "14",
   },
   {
     id: 3,
     question: "2+6 = ?",
-    answers: ["4", "2", "3", "5"],
-    correctAnswer: "4",
+    answers: ["8", "2", "3", "5"],
+    correctAnswer: "8",
   },
   {
     id: 4,
     question: "5+2 = ?",
-    answers: ["4", "2", "3", "5"],
-    correctAnswer: "4",
-    // userAnswer: "3"
+    answers: ["4", "2", "3", "7"],
+    correctAnswer: "7",
   },
   {
     id: 5,
     question: "1+2 = ?",
     answers: ["4", "2", "3", "5"],
-    correctAnswer: "4",
+    correctAnswer: "3",
   },
   {
     id: 6,
-    question: "2+2 = ?",
-    answers: ["4", "2", "3", "5"],
-    correctAnswer: "4",
+    question: "6+2 = ?",
+    answers: ["4", "2", "8", "5"],
+    correctAnswer: "8",
   },
   {
     id: 7,
-    question: "2+12 = ?",
-    answers: ["4", "2", "3", "5"],
-    correctAnswer: "4",
+    question: "2+10 = ?",
+    answers: ["4", "2", "12", "5"],
+    correctAnswer: "12",
   },
   {
     id: 8,
-    question: "2+6 = ?",
-    answers: ["4", "2", "3", "5"],
-    correctAnswer: "4",
+    question: "3+3 = ?",
+    answers: ["4", "6", "3", "5"],
+    correctAnswer: "6",
   },
   {
     id: 9,
     question: "5+2 = ?",
-    answers: ["4", "2", "3", "5"],
-    correctAnswer: "4",
-    // userAnswer: "3"
+    answers: ["4", "2", "7", "5"],
+    correctAnswer: "7",
   },
   {
     id: 10,
-    question: "1+2 = ?",
+    question: "4+1 = ?",
     answers: ["4", "2", "3", "5"],
-    correctAnswer: "4",
+    correctAnswer: "5",
   },
 ]);
+
 
 const handleSelectAnswer = (obj) => {
   quizzes.forEach((item) => {
