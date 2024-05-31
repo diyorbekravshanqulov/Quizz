@@ -1,16 +1,19 @@
 <template>
   <div class="hover:bg-gray-50 p-5 mb-5">
-    <h1 class="text-4xl font-bold mb-5">{{ quizz.question }}</h1>
+    <h1 class="text-4xl font-bold mb-5">{{ quizz.id }}.
+      Hisoblang
+      <span class="font-thin block my-10 mx-10">
+        {{ quizz.question }}
+      </span>
+    </h1>
     <div class="flex flex-col">
       <label
-        :class="
-          quizz.answers[answerIndex] === quizz.userAnswer
-            ? 'bg-slate-900 text-white'
-            : 'hover:bg-primary'
-        "
-        class="p-8 text-2xl"
         v-for="(answer, answerIndex) in quizz.answers"
         :key="answerIndex"
+        :class="[
+          'p-8 text-2xl',
+          quizz.userAnswer === answer ? 'bg-slate-900 text-white' : 'hover:bg-primary'
+        ]"
         :for="`id-${quizz.id}-${answerIndex}`"
       >
         {{ "abcd"[answerIndex] }}) {{ answer }}
@@ -36,33 +39,16 @@ const props = defineProps({
   },
 });
 
-const userAnswer = ref("");
-const emit = defineEmits(["user-select-answer", "user-remove-answer"]);
+const userAnswer = ref(props.quizz.userAnswer);
+const emit = defineEmits(["user-select-answer"]);
 
 const selectAnswer = (answerIndex) => {
   const selectedAnswer = props.quizz.answers[answerIndex];
-  console.log(selectedAnswer);
-
-  // if (String(userAnswer.value) == String(selectedAnswer)) {
-  //   // If the selected answer is the same as the current one, remove it
-
-  //   emit("user-select-answer", {
-  //     id: props.quizz.id,
-  //     userAnswer: userAnswer.value,
-  //   });
-  // } else {
-  //   // Otherwise, set the new answer
-    userAnswer.value = selectedAnswer;
+  userAnswer.value = selectedAnswer;
 
   emit("user-select-answer", {
     id: props.quizz.id,
     userAnswer: userAnswer.value,
   });
 };
-// };
-
-function removeAnswer(answer) {
-  props.quizz.userAnswer = "";
-  console.log("Removed answer:", answer);
-}
 </script>

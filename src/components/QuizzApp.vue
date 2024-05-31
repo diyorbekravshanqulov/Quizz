@@ -14,6 +14,8 @@
       <QuizzItem
         v-for="(quizz, index) in quizzes"
         :quizz="quizz"
+      :quizzes="quizzes"
+
         @user-select-answer="handleSelectAnswer"
       />
     </div>
