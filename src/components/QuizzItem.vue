@@ -1,5 +1,5 @@
 <template>
-  <div class="hover:bg-gray-200 p-5 mb-5">
+  <div class="hover:bg-gray-50 p-5 mb-5">
     <h1 class="text-4xl font-bold mb-5">{{ quizz.question }}</h1>
     <div class="flex flex-col">
       <label

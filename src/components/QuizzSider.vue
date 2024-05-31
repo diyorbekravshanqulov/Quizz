@@ -13,7 +13,8 @@ const props = defineProps({
 const { modelValue } = toRefs(props);
 
 const count = ref(0);
-const remainingTime = ref(260); // Set the initial countdown time (in seconds)
+const initialTime = 360; // Set the initial countdown time (in seconds)
+const remainingTime = ref(initialTime); 
 let countdownInterval = null;
 
 const emit = defineEmits(["update:modelValue", "finish:test"]);
@@ -22,10 +23,24 @@ const toogleSide = () => {
   emit("update:modelValue", !modelValue.value);
 };
 
+const resetQuizzes = () => {
+  props.quizzes.forEach(quiz => {
+    quiz.userAnswer = null; // Reset the user's answer
+  });
+};
+
 const finish = () => {
-  toogleSide();
   clearInterval(countdownInterval); // Clear the interval when finishing the test
+  toogleSide();
   emit("finish:test");
+  reset(); // Reset the quiz state
+};
+
+const reset = () => {
+  remainingTime.value = initialTime;
+  resetQuizzes();
+  count.value = 0;
+  startCountdown(); // Restart the countdown
 };
 
 const updateCount = () => {
@@ -44,6 +59,7 @@ const buttonClasses = computed(() => {
 });
 
 const startCountdown = () => {
+  clearInterval(countdownInterval); // Clear any existing interval
   countdownInterval = setInterval(() => {
     if (remainingTime.value > 0) {
       remainingTime.value--;
@@ -108,7 +124,7 @@ onBeforeUnmount(() => {
         <button
           v-for="(item, index) in props.quizzes"
           :key="index"
-          :class="['border border-[#000] flex items-center justify-center w-[40px] h-[40px] rounded-[50%]', buttonClasses[index]]"
+          :class="['hover:border-transparent hover:bg-black hover:text-white border border-[#000] flex items-center justify-center w-[40px] h-[40px] rounded-[50%]', buttonClasses[index]]"
         >
           {{ index + 1 }}
         </button>

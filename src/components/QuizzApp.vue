@@ -42,7 +42,7 @@
     <QuizzSider
       :quizzes="quizzes"
       v-model="isSideMenu"
-      @finish:test="finishTest"
+      @finish:test="finishTestExit"
     />
   </div>
 </template>
@@ -88,6 +88,37 @@ const quizzes = reactive([
     answers: ["4", "2", "3", "5"],
     correctAnswer: "4",
   },
+  {
+    id: 6,
+    question: "2+2 = ?",
+    answers: ["4", "2", "3", "5"],
+    correctAnswer: "4",
+  },
+  {
+    id: 7,
+    question: "2+12 = ?",
+    answers: ["4", "2", "3", "5"],
+    correctAnswer: "4",
+  },
+  {
+    id: 8,
+    question: "2+6 = ?",
+    answers: ["4", "2", "3", "5"],
+    correctAnswer: "4",
+  },
+  {
+    id: 9,
+    question: "5+2 = ?",
+    answers: ["4", "2", "3", "5"],
+    correctAnswer: "4",
+    // userAnswer: "3"
+  },
+  {
+    id: 10,
+    question: "1+2 = ?",
+    answers: ["4", "2", "3", "5"],
+    correctAnswer: "4",
+  },
 ]);
 
 const handleSelectAnswer = (obj) => {
@@ -103,14 +134,26 @@ const trueQuizzes = ref(0);
 const percentQuizzes = ref(0);
 const userBall = ref(0);
 
+const finishTestExit = () => {
+  window.location.reload(); // Reload the page to reset the state
+};
+
 const finishTest = () => {
+  if (isFinishTest.value) {
+    window.location.reload(); // Reload the page to reset the state
+  } else {
+    calculateResults();
+  }
+};
+
+const calculateResults = () => {
   isFinishTest.value = true;
+  trueQuizzes.value = 0;
   quizzes.forEach((item) => {
     if (item.correctAnswer == item.userAnswer) {
       trueQuizzes.value++;
     }
   });
-
   percentQuizzes.value = (trueQuizzes.value * 100) / quizzes.length;
   userBall.value = percentQuizzes.value;
 };
