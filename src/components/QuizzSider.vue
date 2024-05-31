@@ -104,21 +104,21 @@ onBeforeUnmount(() => {
     <div class="flex items-center justify-between shadow-md pr-5">
       <div>
         <button
-          class="bg-orange-700 py-6 px-2 flex justify-center hover:bg-slate-900 hover:text-white"
+          class="bg-orange-700 px-4 py-6 flex justify-center hover:bg-slate-900 hover:text-white"
           :class="!modelValue ? 'w-[65px]' : ''"
           @click="toogleSide"
         >
           <Icon
             :class="!modelValue ? '' : 'rotate-180'"
-            class="text-4xl"
+            class="text-3xl"
             icon="iconamoon:arrow-left-2-bold"
           />
         </button>
       </div>
 
-      <div class="text-3xl font-medium py-6">{{ formattedTime }}</div>
+      <div class="text-3xl font-medium py-8">{{ formattedTime }}</div>
 
-      <button @click="finish" class="text-2xl text-[#ccc] py-6">
+      <button @click="finish" class="text-2xl text-[#ccc]">
         chiqish ->
       </button>
     </div>

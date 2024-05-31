@@ -1,15 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{vue,js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
-        primary: '#FF8F5E'
-      }
+        primary: "#FF8F5E", // Custom primary color
+      },
+      borderRadius: {
+        just: "0 5px 5px 0", // Custom border radius
+      },
     },
   },
   plugins: [],
-}
+};
