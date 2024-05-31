@@ -146,7 +146,7 @@ const userBall = ref(0);
 const finishTestExit = () => {
   window.scrollTo({
     top: 0,
-    behavior: "smooth",
+    // behavior: "smooth",
   });
   location.reload(); // Reload the window to restart the test
 };
