@@ -109,7 +109,7 @@ onBeforeUnmount(() => {
         </button>
       </div>
 
-      <div class="text-3xl font-medium py-8">{{ formattedTime }}</div>
+      <div class="text-3xl font-medium py-6">{{ formattedTime }}</div>
 
       <button @click="finish" class="text-2xl text-[#ccc] py-8">
         chiqish ->
