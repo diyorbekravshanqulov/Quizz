@@ -41,6 +41,7 @@ const emit = defineEmits(["user-select-answer", "user-remove-answer"]);
 
 const selectAnswer = (answerIndex) => {
   const selectedAnswer = props.quizz.answers[answerIndex];
+  console.log(selectedAnswer);
 
   // if (String(userAnswer.value) == String(selectedAnswer)) {
   //   // If the selected answer is the same as the current one, remove it

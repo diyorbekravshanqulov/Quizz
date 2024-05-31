@@ -1,5 +1,5 @@
 <script setup>
-import { toRefs, ref, watch, computed } from "vue";
+import { toRefs, ref, watch, computed, onMounted, onBeforeUnmount } from "vue";
 import { Icon } from "@iconify/vue";
 
 const props = defineProps({
@@ -13,6 +13,8 @@ const props = defineProps({
 const { modelValue } = toRefs(props);
 
 const count = ref(0);
+const remainingTime = ref(260); // Set the initial countdown time (in seconds)
+let countdownInterval = null;
 
 const emit = defineEmits(["update:modelValue", "finish:test"]);
 
@@ -22,6 +24,7 @@ const toogleSide = () => {
 
 const finish = () => {
   toogleSide();
+  clearInterval(countdownInterval); // Clear the interval when finishing the test
   emit("finish:test");
 };
 
@@ -38,6 +41,35 @@ const buttonClasses = computed(() => {
   return props.quizzes.map((quiz) => {
     return quiz.userAnswer ? "bg-black text-white" : "";
   });
+});
+
+const startCountdown = () => {
+  countdownInterval = setInterval(() => {
+    if (remainingTime.value > 0) {
+      remainingTime.value--;
+    } else {
+      clearInterval(countdownInterval);
+      finish(); // Automatically finish the test when time runs out
+    }
+  }, 1000);
+};
+
+// Helper function to format time
+const formatTime = (timeInSeconds) => {
+  const hours = Math.floor(timeInSeconds / 3600);
+  const minutes = Math.floor((timeInSeconds % 3600) / 60);
+  const seconds = timeInSeconds % 60;
+  return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+};
+
+const formattedTime = computed(() => formatTime(remainingTime.value));
+
+onMounted(() => {
+  startCountdown();
+});
+
+onBeforeUnmount(() => {
+  clearInterval(countdownInterval);
 });
 </script>
 
@@ -61,7 +93,7 @@ const buttonClasses = computed(() => {
         </button>
       </div>
 
-      <div class="text-3xl font-medium py-8">time</div>
+      <div class="text-3xl font-medium py-8">{{ formattedTime }}</div>
 
       <button @click="finish" class="text-2xl text-[#ccc] py-8">
         chiqish ->
